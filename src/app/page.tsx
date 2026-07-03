@@ -1,66 +1,226 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+import CallCalendar from '../components/CallCalendar';
 
 export default function Home() {
   return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className={styles.intro}>
-          <h1>To get started, edit the page.tsx file.</h1>
-          <p>
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Learning
-            </a>{" "}
-            center.
+    <div className="home-container">
+      {/* Hero Section */}
+      <section className="hero-section">
+        <div className="hero-profile-bg-wrapper">
+          <div className="hero-profile-image">
+            <img 
+              src="/images/vikas_1.jpg" 
+              alt="Profile" 
+            />
+          </div>
+        </div>
+
+        <div className="hero-divider"></div>
+        
+        <div className="hero-content">
+          <h1 className="hero-title">
+            Hey, I&apos;m Vikas Prasad!<br />Welcome to my<br />corner of the internet!
+          </h1>
+        </div>
+
+        <div className="hero-subtitle-container">
+          <p className="hero-subtitle">
+            I&apos;m a developer with a passion for building great software and a knack for tinkering. This site serves as my portfolio where I showcase my ideas, projects, and experiments!
           </p>
         </div>
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
+
+        <div className="hero-divider"></div>
+
+        <div className="hero-divider"></div>
+
+        <div className="hero-gallery">
+          <div className="gallery-item img-1">
+            <img src="/images/blog_1.png" alt="Link Previews Project" />
+          </div>
+          <div className="gallery-item img-2">
+            <img src="/images/blog_2.png" alt="Anchor TOC Project" />
+          </div>
+          <div className="gallery-item img-3">
+            <img src="/images/blog_3.png" alt="Signal Forms Project" />
+          </div>
+          <div className="gallery-item img-4">
+            <img src="/images/knights_kwest.jpeg" alt="Knights Kwest Project" />
+          </div>
+        </div>
+      </section>
+
+      {/* About Section */}
+      <section className="section-block">
+        <div className="section-divider"></div>
+        <div className="section-header-centered">
+          <span className="section-label">About</span>
+          <h2 className="section-title-centered">Here&apos;s what sets me apart<br/>and makes me unique</h2>
+        </div>
+
+        <div className="about-grid">
+          <div className="about-col">
+            {/* Learn more about me */}
+            <a href="/about" className="about-card about-me-card">
+              <h3>Learn more about me</h3>
+              <p>Good morning!<br/>I&apos;m Vikas, an experienced front-end developer.</p>
+              <div className="about-img"></div>
+            </a>
+
+            {/* Toolbox */}
+            <a href="/toolbox" className="about-card toolbox-card">
+              <h3>Toolbox</h3>
+              <p>Check out my favorite tools and spots around the web.</p>
+              <div className="toolbox-icons-wrapper">
+                <div className="toolbox-icons">
+                  <div className="tool-item tool-1">
+                    <div className="tool-item-inner">⚛️</div>
+                  </div>
+                  <div className="tool-item tool-2">
+                    <div className="tool-item-inner" style={{ fontSize: '1.5rem' }}>🎨</div>
+                  </div>
+                  <div className="tool-item tool-3 large" style={{ color: '#007acc' }}>
+                    <div className="tool-item-inner">
+                      <svg width="40" height="40" viewBox="0 0 24 24" fill="currentColor"><path d="M23.15 2.587L18.21.21a1.494 1.494 0 0 0-1.705.29l-9.46 8.63-4.12-3.128a.999.999 0 0 0-1.276.057L.327 7.261A1 1 0 0 0 .326 8.74L3.899 12 .326 15.26a1 1 0 0 0 .001 1.479L1.65 17.94a.999.999 0 0 0 1.276.057l4.12-3.128 9.46 8.63a1.492 1.492 0 0 0 1.704.29l4.942-2.377A1.5 1.5 0 0 0 24 20.06V3.939a1.5 1.5 0 0 0-.85-1.352zm-5.146 14.861L10.826 12l7.178-5.448v10.896z"/></svg>
+                    </div>
+                  </div>
+                  <div className="tool-item tool-4">
+                    <div className="tool-item-inner" style={{ fontSize: '1.5rem' }}>🚀</div>
+                  </div>
+                  <div className="tool-item tool-5">
+                    <div className="tool-item-inner">🔥</div>
+                  </div>
+                </div>
+              </div>
+            </a>
+          </div>
+
+          <div className="about-col">
+            {/* Connections */}
+            <a href="/connections" className="about-card connections-card">
+              <div className="conn-graphic">
+                <div className="blur-ring ring-1"></div>
+                <div className="blur-ring ring-2"></div>
+                <div className="blur-ring ring-3"></div>
+                <div className="blur-ring ring-4"></div>
+                <div className="blur-ring ring-5"></div>
+                <div style={{ position: 'absolute', width: '100px', height: '100px', borderRadius: '50%', overflow: 'hidden', border: '5px solid #fff', boxShadow: '0 4px 12px rgba(0,0,0,0.08)', zIndex: 10, left: '50%', transform: 'translateX(-50%)' }}>
+                  <img src="/images/vikas_1.jpg" alt="Connections Profile" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                </div>
+              </div>
+              <h3>Connections</h3>
+              <p>An evolving list of people I&apos;ve met and those I wish to meet.</p>
+            </a>
+
+
+
+            {/* Book a call */}
+            <a href="#" className="about-card call-card">
+              <div className="call-content">
+                <h3>Book a call with me</h3>
+                <p>I&apos;d love to chat even if there&apos;s no agenda!</p>
+              </div>
+              <CallCalendar />
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* Blog Section */}
+      <section className="section-block">
+        <div className="section-divider"></div>
+        <div className="blog-section-header">
+          <span className="section-label">Blog</span>
+          <h2 className="section-title-centered">I like sharing my experiments<br/>&amp;&amp; knowledge with others</h2>
+        </div>
+
+        <div className="blog-grid">
+          <a href="/blog/build-link-previews" className="blog-card">
+            <div className="blog-card-img red"></div>
+            <div className="blog-card-body">
+              <h3>Build Link Previews with Playwright and the Popover API</h3>
+              <p>Wikipedia-style link previews can make your blog feel more polished. In this tutorial, we&apos;ll build a system that captures screenshots at build time and displays them using the native Popover API with smooth CSS animations.</p>
+            </div>
           </a>
-          <a
-            className={styles.secondary}
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
+          <a href="/blog/modern-table-of-contents" className="blog-card">
+            <div className="blog-card-img blue"></div>
+            <div className="blog-card-body">
+              <h3>A Modern Table of Contents in Next.js with CSS Anchor Positioning</h3>
+              <p>In this tutorial, you&apos;ll learn how to build a floating table of contents component for your Next.js blog that tracks the reader&apos;s scroll position and highlights the active section with a smooth animated dot.</p>
+            </div>
+          </a>
+          <a href="/blog/signal-forms-angular" className="blog-card">
+            <div className="blog-card-img purple"></div>
+            <div className="blog-card-body">
+              <h3>How to Use Signal Forms in Angular 21 (With Examples)</h3>
+              <p>In this post, you&apos;ll learn how Angular&apos;s new Signal Forms dramatically simplify form creation, improve performance through fine-grained reactivity, and eliminate the boilerplate and workarounds required by Reactive Forms.</p>
+            </div>
           </a>
         </div>
-      </main>
+      </section>
+
+      {/* Sandbox Section */}
+      <section className="section-block" style={{ marginBottom: '4rem' }}>
+        <div className="section-divider"></div>
+        <div className="section-header-centered">
+          <span className="section-label">My Site</span>
+          <h2 className="section-title-centered">My site is a playful sandbox.<br/>Explore, experiment, &amp;&amp; say hello</h2>
+        </div>
+
+        <div className="sandbox-grid">
+          {/* Card 1: Samarthwave Hospitality Project */}
+          <div className="sandbox-card project-card">
+            <div className="project-graphic">
+              <img src="/images/samarthwave.png" alt="Samarthwave Hospitality" className="project-screenshot" />
+            </div>
+            <div className="project-card-body">
+              <h3>Samarthwave Hospitality</h3>
+              <div className="project-links">
+                <a href="https://github.com/vikasPrasad05" target="_blank" rel="noopener noreferrer" className="project-link-btn github-btn">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="btn-icon">
+                    <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
+                  </svg>
+                  <span>GITHUB</span>
+                </a>
+                <a href="https://www.samarthwavehospitality.com" target="_blank" rel="noopener noreferrer" className="project-link-btn live-btn">
+                  <span>LIVE DEMO</span>
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="btn-icon-right">
+                    <path d="M7 17l9.2-9.2M17 17V7H7" />
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          {/* Card 2: Speaking */}
+          <div className="sandbox-card speaking-card coming-soon-card">
+            <div className="speaking-graphic">
+               <svg viewBox="0 0 200 200" className="speaking-svg">
+                  <circle className="ring-outer" cx="100" cy="100" r="80" fill="none" stroke="#eef2ff" strokeWidth="2.5" opacity="0.4" />
+                  <circle className="ring-inner" cx="100" cy="100" r="60" fill="none" stroke="#e0e7ff" strokeWidth="2.5" opacity="0.4" />
+                  <circle cx="100" cy="100" r="40" fill="#f3f4f6" opacity="0.4" />
+                  <rect x="65" y="80" width="70" height="40" rx="20" fill="#fff" stroke="#e5e7eb" strokeWidth="1" opacity="0.4" />
+               </svg>
+            </div>
+            <div className="card-text">
+              <h3>Speaking</h3>
+              <p className="coming-soon-label">Coming Soon</p>
+            </div>
+          </div>
+
+          {/* Card 3: Community Wall */}
+          <div className="sandbox-card community-card coming-soon-card">
+             <div className="community-graphic">
+               <div className="mock-card mock-card-1" style={{ opacity: 0.3 }}></div>
+               <div className="mock-card mock-card-2" style={{ opacity: 0.3 }}></div>
+             </div>
+            <div className="card-text">
+              <h3>Community Wall</h3>
+              <p className="coming-soon-label">Coming Soon</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
     </div>
   );
 }
