@@ -20,10 +20,10 @@ export default function AboutPage() {
 
   // Sticker positions state for the Scrapbook drag-and-drop feature
   const [stickers, setStickers] = useState<Sticker[]>([
-    { id: 1, x: 60, y: 40, rot: -8, width: 80, src: '/images/that_conf_sticker.png', name: 'That Conf' },
-    { id: 2, x: 260, y: 20, rot: 12, width: 90, src: '/images/c3_conf_sticker.png', name: 'C3 Conf' },
-    { id: 3, x: 480, y: 45, rot: -5, width: 110, src: '/images/lotr_sticker.png', name: 'LOTR' },
-    { id: 4, x: 720, y: 30, rot: 10, width: 120, src: '/images/cyc_sticker.png', name: 'CYC' },
+    { id: 1, x: 60, y: 40, rot: -8, width: 110, src: '/images/shawshank_sticker.png', name: 'The Shawshank Redemption' },
+    { id: 2, x: 260, y: 20, rot: 12, width: 110, src: '/images/interstellar_sticker.png', name: 'Interstellar' },
+    { id: 3, x: 480, y: 45, rot: -5, width: 110, src: '/images/demon_slayer_sticker.png', name: 'Demon Slayer' },
+    { id: 4, x: 720, y: 30, rot: 10, width: 110, src: '/images/attack_on_titan_sticker.png', name: 'Attack on Titan' },
   ]);
 
   const [activeDragId, setActiveDragId] = useState<number | null>(null);
