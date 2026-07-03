@@ -20,10 +20,10 @@ export default function AboutPage() {
 
   // Sticker positions state for the Scrapbook drag-and-drop feature
   const [stickers, setStickers] = useState<Sticker[]>([
-    { id: 1, x: 10, y: 15, rot: -8, width: 80, src: '/images/that_conf_sticker.png', name: 'That Conf' },
-    { id: 2, x: 110, y: 10, rot: 12, width: 90, src: '/images/c3_conf_sticker.png', name: 'C3 Conf' },
-    { id: 3, x: 210, y: 12, rot: -5, width: 110, src: '/images/lotr_sticker.png', name: 'LOTR' },
-    { id: 4, x: 310, y: 8, rot: 10, width: 120, src: '/images/cyc_sticker.png', name: 'CYC' },
+    { id: 1, x: 60, y: 40, rot: -8, width: 80, src: '/images/that_conf_sticker.png', name: 'That Conf' },
+    { id: 2, x: 260, y: 20, rot: 12, width: 90, src: '/images/c3_conf_sticker.png', name: 'C3 Conf' },
+    { id: 3, x: 480, y: 45, rot: -5, width: 110, src: '/images/lotr_sticker.png', name: 'LOTR' },
+    { id: 4, x: 720, y: 30, rot: 10, width: 120, src: '/images/cyc_sticker.png', name: 'CYC' },
   ]);
 
   const [activeDragId, setActiveDragId] = useState<number | null>(null);
@@ -294,44 +294,7 @@ export default function AboutPage() {
             </div>
           </div>
 
-          {/* Card 2: Scrapbook Widget */}
-          <div className="bento-card scrapbook-card-container">
-            <h3 className="bento-card-title">Scrapbook</h3>
-            <p className="bento-card-desc">Drag the stickers around!</p>
-            <div className="scrapbook-canvas">
-              <div className="scrapbook-dots-bg"></div>
-              {stickers.map((sticker) => (
-                <div
-                  key={sticker.id}
-                  className="draggable-sticker"
-                  style={{
-                    left: `${sticker.x}px`,
-                    top: `${sticker.y}px`,
-                    transform: `rotate(${sticker.rot}deg)`,
-                    width: `${sticker.width}px`,
-                    zIndex: activeDragId === sticker.id ? 99 : 10,
-                  }}
-                  onMouseDown={(e) => handleMouseDown(e, sticker.id)}
-                >
-                  <img src={sticker.src} alt={sticker.name} draggable="false" />
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Card 3: Currently Reading Widget */}
-          <div className="bento-card reading-card-container">
-            <h3 className="bento-card-title">Currently Reading</h3>
-            <div className="reading-book-wrapper">
-              <div className="reading-book-glow"></div>
-              <div className="book-tilt-container">
-                <div className="book-spine-shadow"></div>
-                <img src="/images/red_rising_cover.jpeg" alt="Book Cover" />
-              </div>
-            </div>
-          </div>
-
-          {/* Card 4: Connections Widget */}
+          {/* Card 2: Connections Widget (Replacing Scrapbook, using Scrapbook's dimensions) */}
           <div className="bento-card connections-card-container">
             <a href="/connections" className="connections-link-wrapper">
               <div className="connections-hover-indicator">
@@ -358,49 +321,29 @@ export default function AboutPage() {
             </a>
           </div>
 
-          {/* Card 5: Stats Widget */}
-          <div className="bento-card stats-card-container">
-            <a href="/stats" className="stats-link-wrapper">
-              <div className="stats-hover-indicator">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                  <path d="M7 17l9.2-9.2M17 17V7H7" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
-              </div>
-              <h3 className="bento-card-title">Stats</h3>
-              <div className="stats-chart-wrapper">
-                {/* Background Grid Lines */}
-                <div className="chart-grid-line line-0"></div>
-                <div className="chart-grid-line line-25"></div>
-                <div className="chart-grid-line line-50"></div>
-                <div className="chart-grid-line line-75"></div>
-                <div className="chart-grid-line line-100"></div>
-
-                {/* Animated Chart Bars */}
-                <div className="chart-bars-container">
-                  <div className="chart-bar bar-1"><div className="bar-fill" style={{ height: '65%' }}></div></div>
-                  <div className="chart-bar bar-2"><div className="bar-fill" style={{ height: '48%' }}></div></div>
-                  <div className="chart-bar bar-3"><div className="bar-fill" style={{ height: '55%' }}></div></div>
-                  <div className="chart-bar bar-4"><div className="bar-fill" style={{ height: '82%' }}></div></div>
-                  <div className="chart-bar bar-5"><div className="bar-fill" style={{ height: '42%' }}></div></div>
-                  <div className="chart-bar bar-6"><div className="bar-fill" style={{ height: '90%' }}></div></div>
-                  <div className="chart-bar bar-7"><div className="bar-fill" style={{ height: '75%' }}></div></div>
+          {/* Card 3: Scrapbook Widget (Full width long card at the bottom) */}
+          <div className="bento-card scrapbook-card-container">
+            <h3 className="bento-card-title">Scrapbook</h3>
+            <p className="bento-card-desc">Drag the stickers around!</p>
+            <div className="scrapbook-canvas">
+              <div className="scrapbook-dots-bg"></div>
+              {stickers.map((sticker) => (
+                <div
+                  key={sticker.id}
+                  className="draggable-sticker"
+                  style={{
+                    left: `${sticker.x}px`,
+                    top: `${sticker.y}px`,
+                    transform: `rotate(${sticker.rot}deg)`,
+                    width: `${sticker.width}px`,
+                    zIndex: activeDragId === sticker.id ? 99 : 10,
+                  }}
+                  onMouseDown={(e) => handleMouseDown(e, sticker.id)}
+                >
+                  <img src={sticker.src} alt={sticker.name} draggable="false" />
                 </div>
-
-                {/* Overlaid Animated Graph Line */}
-                <svg className="chart-svg-line" viewBox="0 0 100 100" preserveAspectRatio="none">
-                  <path
-                    d="M 7,65 L 21,48 L 35,55 L 50,18 L 64,42 L 78,10 L 93,25"
-                    fill="none"
-                    stroke="rgba(99, 102, 241, 0.8)"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    className="trend-line-path"
-                  />
-                  <circle cx="78" cy="10" r="3" fill="#6366f1" className="trend-line-dot" />
-                </svg>
-              </div>
-            </a>
+              ))}
+            </div>
           </div>
 
         </div>
