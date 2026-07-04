@@ -1,4 +1,5 @@
 import CallCalendar from '../components/CallCalendar';
+import LaptopWorkspace from '../components/LaptopWorkspace';
 
 export default function Home() {
   return (
@@ -30,22 +31,9 @@ export default function Home() {
 
         <div className="hero-divider"></div>
 
-        <div className="hero-divider"></div>
+        <LaptopWorkspace />
 
-        <div className="hero-gallery">
-          <div className="gallery-item img-1">
-            <img src="/images/blog_1.png" alt="Link Previews Project" />
-          </div>
-          <div className="gallery-item img-2">
-            <img src="/images/blog_2.png" alt="Anchor TOC Project" />
-          </div>
-          <div className="gallery-item img-3">
-            <img src="/images/blog_3.png" alt="Signal Forms Project" />
-          </div>
-          <div className="gallery-item img-4">
-            <img src="/images/knights_kwest.jpeg" alt="Knights Kwest Project" />
-          </div>
-        </div>
+        <div className="hero-divider"></div>
       </section>
 
       {/* About Section */}
@@ -65,28 +53,53 @@ export default function Home() {
               <div className="about-img"></div>
             </a>
 
-            {/* Toolbox */}
-            <a href="/toolbox" className="about-card toolbox-card">
-              <h3>Toolbox</h3>
+            {/* Tech Stack */}
+            <a href="/techstack" className="about-card techstack-card">
+              <h3>Tech Stack</h3>
               <p>Check out my favorite tools and spots around the web.</p>
-              <div className="toolbox-icons-wrapper">
-                <div className="toolbox-icons">
-                  <div className="tool-item tool-1">
-                    <div className="tool-item-inner">⚛️</div>
+              <div className="techstack-icons-wrapper">
+                <div className="techstack-icons">
+                  {/* React */}
+                  <div className="tool-item large" style={{ color: '#00d2ff' }}>
+                    <div className="tool-item-inner">
+                      <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                        <ellipse cx="12" cy="12" rx="11" ry="4.2" transform="rotate(30 12 12)" />
+                        <ellipse cx="12" cy="12" rx="11" ry="4.2" transform="rotate(90 12 12)" />
+                        <ellipse cx="12" cy="12" rx="11" ry="4.2" transform="rotate(150 12 12)" />
+                        <circle cx="12" cy="12" r="2" fill="currentColor" />
+                      </svg>
+                    </div>
                   </div>
-                  <div className="tool-item tool-2">
-                    <div className="tool-item-inner" style={{ fontSize: '1.5rem' }}>🎨</div>
+                  {/* Next.js */}
+                  <div className="tool-item large" style={{ color: '#000000' }}>
+                    <div className="tool-item-inner">
+                      <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+                        <path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm1 14.5l-3.5-5.5v5.5H9V8h1.5l3.5 5.5V8h1.5v8.5H13z" fill="currentColor"/>
+                      </svg>
+                    </div>
                   </div>
-                  <div className="tool-item tool-3 large" style={{ color: '#007acc' }}>
+                  {/* VS Code */}
+                  <div className="tool-item large" style={{ color: '#007acc' }}>
                     <div className="tool-item-inner">
                       <svg width="40" height="40" viewBox="0 0 24 24" fill="currentColor"><path d="M23.15 2.587L18.21.21a1.494 1.494 0 0 0-1.705.29l-9.46 8.63-4.12-3.128a.999.999 0 0 0-1.276.057L.327 7.261A1 1 0 0 0 .326 8.74L3.899 12 .326 15.26a1 1 0 0 0 .001 1.479L1.65 17.94a.999.999 0 0 0 1.276.057l4.12-3.128 9.46 8.63a1.492 1.492 0 0 0 1.704.29l4.942-2.377A1.5 1.5 0 0 0 24 20.06V3.939a1.5 1.5 0 0 0-.85-1.352zm-5.146 14.861L10.826 12l7.178-5.448v10.896z"/></svg>
                     </div>
                   </div>
-                  <div className="tool-item tool-4">
-                    <div className="tool-item-inner" style={{ fontSize: '1.5rem' }}>🚀</div>
+                  {/* TypeScript */}
+                  <div className="tool-item large" style={{ color: '#3178c6' }}>
+                    <div className="tool-item-inner">
+                      <svg width="40" height="40" viewBox="0 0 24 24" fill="currentColor">
+                        <rect width="24" height="24" rx="4" fill="currentColor"/>
+                        <text x="13" y="18" fill="white" fontWeight="bold" fontFamily="sans-serif" fontSize="11">TS</text>
+                      </svg>
+                    </div>
                   </div>
-                  <div className="tool-item tool-5">
-                    <div className="tool-item-inner">🔥</div>
+                  {/* Tailwind */}
+                  <div className="tool-item large" style={{ color: '#38bdf8' }}>
+                    <div className="tool-item-inner">
+                      <svg width="40" height="40" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 6.018C7.4 6.018 4.38 8.681 2.93 14c2.258-3.15 4.838-4.28 7.74-3.393 1.656.505 2.84 1.705 4.15 3.037C17.065 15.92 19.866 18 25 18c4.6 0 7.62-2.663 9.07-8-2.258 3.15-4.838 4.28-7.74 3.393-1.656-.505-2.84-1.705-4.15-3.037C19.935 8.08 17.134 6 12 6.018z" fill="currentColor"/>
+                      </svg>
+                    </div>
                   </div>
                 </div>
               </div>

@@ -38,7 +38,7 @@ export default function RootLayout({
                 <Link href="/blog" className="nav-link">Blog</Link>
                 <Link href="/projects" className="nav-link">Projects</Link>
                 <a href="/resume.pdf" className="nav-link" target="_blank" rel="noopener noreferrer">Resume</a>
-                <Link href="/toolbox" className="nav-link">Toolbox</Link>
+                <Link href="/techstack" className="nav-link">Tech Stack</Link>
               </div>
 
               <div className="nav-socials">
@@ -94,17 +94,10 @@ export default function RootLayout({
                     </div>
                     <div className="footer-col">
                       <h4>Specifics</h4>
-                      <Link href="/toolbox">Toolbox</Link>
+                      <Link href="/techstack">Tech Stack</Link>
                       <a href="/resume.pdf" target="_blank" rel="noopener noreferrer">Resume</a>
                       <Link href="/products">Products</Link>
-                      <Link href="/community-wall">Community Wall</Link>
-                    </div>
-                    <div className="footer-col">
-                      <h4>Extra</h4>
-                      <Link href="/changelog">Changelog</Link>
                       <Link href="/connections">Connections</Link>
-                      <Link href="/links">Links</Link>
-                      <Link href="/stats">Stats</Link>
                     </div>
                   </div>
                 </div>

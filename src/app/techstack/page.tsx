@@ -232,7 +232,7 @@ const tools: Tool[] = [
   },
 ];
 
-export default function ToolboxPage() {
+export default function TechstackPage() {
   const [selectedTool, setSelectedTool] = useState<Tool | null>(null);
   const categories = Array.from(new Set(tools.map((t) => t.category)));
 
@@ -242,7 +242,7 @@ export default function ToolboxPage() {
       <section className="about-hero-section">
         <div className="about-hero-flex">
           <div className="about-hero-text">
-            <span className="about-pretitle">Toolbox</span>
+            <span className="about-pretitle">Tech Stack</span>
             <h1 className="about-title">Software, languages, &amp; frameworks I use.</h1>
             <p className="about-description">
               A curated collection of technologies and developer tools that I rely on to build responsive web applications, server APIs, and cloud architecture.
@@ -253,27 +253,27 @@ export default function ToolboxPage() {
 
       <div className="section-divider"></div>
 
-      {/* Toolbox categories and items */}
-      <section className="toolbox-sections">
+      {/* Techstack categories and items */}
+      <section className="techstack-sections">
         {categories.map((category) => (
-          <div key={category} className="toolbox-category-section">
-            <h2 className="toolbox-category-title">{category}</h2>
-            <div className="toolbox-items-grid">
+          <div key={category} className="techstack-category-section">
+            <h2 className="techstack-category-title">{category}</h2>
+            <div className="techstack-items-grid">
               {tools
                 .filter((t) => t.category === category)
                 .map((tool) => (
                   <div
                     key={tool.name}
-                    className="toolbox-item-card"
+                    className="techstack-item-card"
                     onClick={() => setSelectedTool(tool)}
                     style={{ cursor: 'pointer' }}
                   >
-                    <div className="toolbox-item-icon-wrapper">
+                    <div className="techstack-item-icon-wrapper">
                       {tool.icon}
                     </div>
-                    <div className="toolbox-item-info">
-                      <span className="toolbox-item-name">{tool.name}</span>
-                      <p className="toolbox-item-desc">{tool.description}</p>
+                    <div className="techstack-item-info">
+                      <span className="techstack-item-name">{tool.name}</span>
+                      <p className="techstack-item-desc">{tool.description}</p>
                     </div>
                   </div>
                 ))}
@@ -285,7 +285,7 @@ export default function ToolboxPage() {
       <div className="section-divider"></div>
 
       {/* Stretched bottom horizontal marquee card */}
-      <div className="toolbox-marquee-card">
+      <div className="techstack-marquee-card">
         <div className="marquee-container">
           <div className="marquee-track">
             <div className="marquee-group">
@@ -321,15 +321,15 @@ export default function ToolboxPage() {
       {/* Sleek Popup Modal */}
       {selectedTool && (
         <div 
-          className="toolbox-modal-overlay"
+          className="techstack-modal-overlay"
           onClick={() => setSelectedTool(null)}
         >
           <div 
-            className="toolbox-modal-content"
+            className="techstack-modal-content"
             onClick={(e) => e.stopPropagation()}
           >
             <button 
-              className="toolbox-modal-close-btn"
+              className="techstack-modal-close-btn"
               onClick={() => setSelectedTool(null)}
               aria-label="Close modal"
             >
@@ -339,23 +339,23 @@ export default function ToolboxPage() {
               </svg>
             </button>
 
-            <div className="toolbox-modal-header">
-              <div className="toolbox-modal-icon-wrapper">
+            <div className="techstack-modal-header">
+              <div className="techstack-modal-icon-wrapper">
                 {selectedTool.icon}
               </div>
-              <div className="toolbox-modal-title-info">
-                <span className="toolbox-modal-category">{selectedTool.category}</span>
-                <h2 className="toolbox-modal-name">{selectedTool.name}</h2>
+              <div className="techstack-modal-title-info">
+                <span className="techstack-modal-category">{selectedTool.category}</span>
+                <h2 className="techstack-modal-name">{selectedTool.name}</h2>
               </div>
             </div>
 
-            <div className="toolbox-modal-body">
-              <div className="toolbox-modal-section">
+            <div className="techstack-modal-body">
+              <div className="techstack-modal-section">
                 <h3>What is it?</h3>
                 <p>{selectedTool.whatItIs}</p>
               </div>
 
-              <div className="toolbox-modal-section">
+              <div className="techstack-modal-section">
                 <h3>What it does</h3>
                 <p>{selectedTool.whatItDoes}</p>
               </div>

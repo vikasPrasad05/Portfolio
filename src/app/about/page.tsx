@@ -24,6 +24,7 @@ export default function AboutPage() {
     { id: 2, x: 260, y: 20, rot: 12, width: 110, src: '/images/interstellar_sticker.png', name: 'Interstellar' },
     { id: 3, x: 480, y: 45, rot: -5, width: 110, src: '/images/demon_slayer_sticker.png', name: 'Demon Slayer' },
     { id: 4, x: 720, y: 30, rot: 10, width: 110, src: '/images/attack_on_titan_sticker.png', name: 'Attack on Titan' },
+    { id: 5, x: 920, y: 35, rot: -12, width: 110, src: '/images/marvel_sticker.png', name: 'Marvel Cinematic Universe' },
   ]);
 
   const [activeDragId, setActiveDragId] = useState<number | null>(null);
@@ -323,8 +324,7 @@ export default function AboutPage() {
 
           {/* Card 3: Scrapbook Widget (Full width long card at the bottom) */}
           <div className="bento-card scrapbook-card-container">
-            <h3 className="bento-card-title">Scrapbook</h3>
-            <p className="bento-card-desc">Drag the stickers around!</p>
+            <h3 className="bento-card-title">All Time Favorites</h3>
             <div className="scrapbook-canvas">
               <div className="scrapbook-dots-bg"></div>
               {stickers.map((sticker) => (
