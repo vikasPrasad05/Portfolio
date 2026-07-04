@@ -41,7 +41,7 @@ export default function Home() {
         <div className="section-divider"></div>
         <div className="section-header-centered">
           <span className="section-label">About</span>
-          <h2 className="section-title-centered">Here&apos;s what sets me apart<br/>and makes me unique</h2>
+          <h2 className="section-title-centered">Here&apos;s what sets me apart<span className="desktop-only-inline"><br/>and makes me unique</span></h2>
         </div>
 
         <div className="about-grid">
@@ -142,7 +142,8 @@ export default function Home() {
         <div className="section-divider"></div>
         <div className="blog-section-header">
           <span className="section-label">Blog</span>
-          <h2 className="section-title-centered">I like sharing my experiments<br/>&amp;&amp; knowledge with others</h2>
+          <h2 className="section-title-centered desktop-only-text">I like sharing my experiments<br/>&amp;&amp; knowledge with others</h2>
+          <h2 className="section-title-centered mobile-only-text">My Knowledge</h2>
         </div>
 
         <div className="blog-grid">
@@ -175,7 +176,8 @@ export default function Home() {
         <div className="section-divider"></div>
         <div className="section-header-centered">
           <span className="section-label">My Site</span>
-          <h2 className="section-title-centered">My site is a playful sandbox.<br/>Explore, experiment, &amp;&amp; say hello</h2>
+          <h2 className="section-title-centered desktop-only-text">My site is a playful sandbox.<br/>Explore, experiment, &amp;&amp; say hello</h2>
+          <h2 className="section-title-centered mobile-only-text">My Experiments</h2>
         </div>
 
         <div className="sandbox-grid">
