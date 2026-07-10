@@ -1,5 +1,15 @@
+import type { Metadata } from 'next';
 import CallCalendar from '../components/CallCalendar';
-import LaptopWorkspace from '../components/LaptopWorkspace';
+
+export const metadata: Metadata = {
+  title: 'Vikas Prasad | Portfolio - Full Stack Software Developer',
+  description: 'Explore the personal portfolio of Vikas Prasad, a Full Stack Developer specializing in Next.js, React, Node.js, Express, MongoDB, and AWS cloud solutions.',
+  openGraph: {
+    title: 'Vikas Prasad | Portfolio - Full Stack Software Developer',
+    description: 'Explore the personal portfolio of Vikas Prasad, a Full Stack Developer specializing in Next.js, React, Node.js, Express, MongoDB, and AWS cloud solutions.',
+    type: 'website',
+  }
+};
 
 export default function Home() {
   return (
@@ -29,11 +39,78 @@ export default function Home() {
           </p>
         </div>
 
-        <div className="hero-divider"></div>
+        <div className="hero-ctas">
+          <a href="/projects" className="hero-cta-primary">
+            Explore Projects
+          </a>
+          <a href="#call-calendar" className="hero-cta-secondary">
+            Get in touch
+          </a>
+        </div>
+      </section>
 
-        <LaptopWorkspace />
+      {/* Sandbox Section */}
+      <section className="section-block">
+        <div className="section-divider"></div>
+        <div className="section-header-centered">
+          <span className="section-label">Projects</span>
+          <h2 className="section-title-centered desktop-only-text">My site is a playful sandbox.<br/>Explore, experiment, &amp;&amp; say hello</h2>
+          <h2 className="section-title-centered mobile-only-text">My Projects</h2>
+        </div>
 
-        <div className="hero-divider"></div>
+        <div className="sandbox-grid">
+          {/* Card 1: Samarthwave Hospitality Project */}
+          <div className="sandbox-card project-card">
+            <div className="project-graphic">
+              <img src="/images/samarthwave.png" alt="Samarthwave Hospitality" className="project-screenshot" />
+            </div>
+            <div className="project-card-body">
+              <h3>Samarthwave Hospitality</h3>
+              <div className="project-links">
+                <a href="https://github.com/vikasPrasad05" target="_blank" rel="noopener noreferrer" className="project-link-btn github-btn">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="btn-icon">
+                    <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
+                  </svg>
+                  <span>GITHUB</span>
+                </a>
+                <a href="https://www.samarthwavehospitality.com" target="_blank" rel="noopener noreferrer" className="project-link-btn live-btn">
+                  <span>LIVE DEMO</span>
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="btn-icon-right">
+                    <path d="M7 17l9.2-9.2M17 17V7H7" />
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          {/* Card 2: Speaking */}
+          <div className="sandbox-card speaking-card coming-soon-card">
+            <div className="speaking-graphic">
+               <svg viewBox="0 0 200 200" className="speaking-svg">
+                  <circle className="ring-outer" cx="100" cy="100" r="80" fill="none" stroke="#eef2ff" strokeWidth="2.5" opacity="0.4" />
+                  <circle className="ring-inner" cx="100" cy="100" r="60" fill="none" stroke="#e0e7ff" strokeWidth="2.5" opacity="0.4" />
+                  <circle cx="100" cy="100" r="40" fill="#f3f4f6" opacity="0.4" />
+                  <rect x="65" y="80" width="70" height="40" rx="20" fill="#fff" stroke="#e5e7eb" strokeWidth="1" opacity="0.4" />
+               </svg>
+            </div>
+            <div className="card-text">
+              <h3>Speaking</h3>
+              <p className="coming-soon-label">Coming Soon</p>
+            </div>
+          </div>
+
+          {/* Card 3: Community Wall */}
+          <div className="sandbox-card community-card coming-soon-card">
+             <div className="community-graphic">
+               <div className="mock-card mock-card-1" style={{ opacity: 0.3 }}></div>
+               <div className="mock-card mock-card-2" style={{ opacity: 0.3 }}></div>
+             </div>
+            <div className="card-text">
+              <h3>Community Wall</h3>
+              <p className="coming-soon-label">Coming Soon</p>
+            </div>
+          </div>
+        </div>
       </section>
 
       {/* About Section */}
@@ -123,119 +200,83 @@ export default function Home() {
               <p>An evolving list of people I&apos;ve met and those I wish to meet.</p>
             </a>
 
-
-
             {/* Book a call */}
-            <a href="#" className="about-card call-card">
+            <div id="call-calendar" className="about-card call-card">
               <div className="call-content">
                 <h3>Book a call with me</h3>
                 <p>I&apos;d love to chat even if there&apos;s no agenda!</p>
               </div>
               <CallCalendar />
-            </a>
+            </div>
           </div>
         </div>
       </section>
 
       {/* Blog Section */}
-      <section className="section-block">
-        <div className="section-divider"></div>
-        <div className="blog-section-header">
-          <span className="section-label">Blog</span>
-          <h2 className="section-title-centered desktop-only-text">I like sharing my experiments<br/>&amp;&amp; knowledge with others</h2>
-          <h2 className="section-title-centered mobile-only-text">My Knowledge</h2>
-        </div>
-
-        <div className="blog-grid">
-          <a href="/blog/build-link-previews" className="blog-card">
-            <div className="blog-card-img red"></div>
-            <div className="blog-card-body">
-              <h3>Build Link Previews with Playwright and the Popover API</h3>
-              <p>Wikipedia-style link previews can make your blog feel more polished. In this tutorial, we&apos;ll build a system that captures screenshots at build time and displays them using the native Popover API with smooth CSS animations.</p>
-            </div>
-          </a>
-          <a href="/blog/modern-table-of-contents" className="blog-card">
-            <div className="blog-card-img blue"></div>
-            <div className="blog-card-body">
-              <h3>A Modern Table of Contents in Next.js with CSS Anchor Positioning</h3>
-              <p>In this tutorial, you&apos;ll learn how to build a floating table of contents component for your Next.js blog that tracks the reader&apos;s scroll position and highlights the active section with a smooth animated dot.</p>
-            </div>
-          </a>
-          <a href="/blog/signal-forms-angular" className="blog-card">
-            <div className="blog-card-img purple"></div>
-            <div className="blog-card-body">
-              <h3>How to Use Signal Forms in Angular 21 (With Examples)</h3>
-              <p>In this post, you&apos;ll learn how Angular&apos;s new Signal Forms dramatically simplify form creation, improve performance through fine-grained reactivity, and eliminate the boilerplate and workarounds required by Reactive Forms.</p>
-            </div>
-          </a>
-        </div>
-      </section>
-
-      {/* Sandbox Section */}
       <section className="section-block" style={{ marginBottom: '4rem' }}>
         <div className="section-divider"></div>
-        <div className="section-header-centered">
-          <span className="section-label">My Site</span>
-          <h2 className="section-title-centered desktop-only-text">My site is a playful sandbox.<br/>Explore, experiment, &amp;&amp; say hello</h2>
-          <h2 className="section-title-centered mobile-only-text">My Experiments</h2>
+        <div className="blog-section-header">
+          <span className="section-label">Knowledge &amp; Articles</span>
+          <h2 className="section-title-centered">My Knowledge</h2>
         </div>
 
-        <div className="sandbox-grid">
-          {/* Card 1: Samarthwave Hospitality Project */}
-          <div className="sandbox-card project-card">
-            <div className="project-graphic">
-              <img src="/images/samarthwave.png" alt="Samarthwave Hospitality" className="project-screenshot" />
+        {/* Knowledge Showcase */}
+        <div className="knowledge-pillars-grid">
+          <div className="knowledge-pillar-item">
+            <div className="knowledge-pillar-graphic">
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{ color: '#6366f1' }}>
+                <circle cx="12" cy="12" r="3" />
+                <circle cx="5" cy="5" r="2" />
+                <line x1="6.5" y1="6.5" x2="9.5" y2="9.5" />
+                <circle cx="19" cy="5" r="2" />
+                <line x1="17.5" y1="6.5" x2="14.5" y2="9.5" />
+                <circle cx="12" cy="20" r="2" />
+                <line x1="12" y1="18" x2="12" y2="15" />
+                <circle cx="5" cy="19" r="2" />
+                <line x1="6.5" y1="17.5" x2="9.5" y2="14.5" />
+                <circle cx="19" cy="19" r="2" />
+                <line x1="17.5" y1="17.5" x2="14.5" y2="14.5" />
+              </svg>
             </div>
-            <div className="project-card-body">
-              <h3>Samarthwave Hospitality</h3>
-              <div className="project-links">
-                <a href="https://github.com/vikasPrasad05" target="_blank" rel="noopener noreferrer" className="project-link-btn github-btn">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="btn-icon">
-                    <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
-                  </svg>
-                  <span>GITHUB</span>
-                </a>
-                <a href="https://www.samarthwavehospitality.com" target="_blank" rel="noopener noreferrer" className="project-link-btn live-btn">
-                  <span>LIVE DEMO</span>
-                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="btn-icon-right">
-                    <path d="M7 17l9.2-9.2M17 17V7H7" />
-                  </svg>
-                </a>
-              </div>
-            </div>
+            <span className="knowledge-pillar-num">01 / ARCHITECTURE</span>
+            <h3 className="knowledge-pillar-title">Robust API Engineering</h3>
+            <p className="knowledge-pillar-desc">
+              Designing modular, rate-limited RESTful and GraphQL APIs with strict schema validation, security policies, and webhook callback settlement managers.
+            </p>
           </div>
 
-          {/* Card 2: Speaking */}
-          <div className="sandbox-card speaking-card coming-soon-card">
-            <div className="speaking-graphic">
-               <svg viewBox="0 0 200 200" className="speaking-svg">
-                  <circle className="ring-outer" cx="100" cy="100" r="80" fill="none" stroke="#eef2ff" strokeWidth="2.5" opacity="0.4" />
-                  <circle className="ring-inner" cx="100" cy="100" r="60" fill="none" stroke="#e0e7ff" strokeWidth="2.5" opacity="0.4" />
-                  <circle cx="100" cy="100" r="40" fill="#f3f4f6" opacity="0.4" />
-                  <rect x="65" y="80" width="70" height="40" rx="20" fill="#fff" stroke="#e5e7eb" strokeWidth="1" opacity="0.4" />
-               </svg>
+          <div className="knowledge-pillar-item">
+            <div className="knowledge-pillar-graphic">
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{ color: '#ea580c' }}>
+                <rect x="2" y="5" width="20" height="14" rx="2" />
+                <line x1="2" y1="10" x2="22" y2="10" />
+                <rect x="6" y="14" width="4" height="2" rx="0.5" />
+                <circle cx="16" cy="14" r="1.5" />
+              </svg>
             </div>
-            <div className="card-text">
-              <h3>Speaking</h3>
-              <p className="coming-soon-label">Coming Soon</p>
-            </div>
+            <span className="knowledge-pillar-num">02 / INTEGRATIONS</span>
+            <h3 className="knowledge-pillar-title">Payment Gateways</h3>
+            <p className="knowledge-pillar-desc">
+              Seamlessly integrating payment providers like Razorpay and Stripe. Experienced in signature validation, payout settlements, ledger accounting, and error handling.
+            </p>
           </div>
 
-          {/* Card 3: Community Wall */}
-          <div className="sandbox-card community-card coming-soon-card">
-             <div className="community-graphic">
-               <div className="mock-card mock-card-1" style={{ opacity: 0.3 }}></div>
-               <div className="mock-card mock-card-2" style={{ opacity: 0.3 }}></div>
-             </div>
-            <div className="card-text">
-              <h3>Community Wall</h3>
-              <p className="coming-soon-label">Coming Soon</p>
+          <div className="knowledge-pillar-item">
+            <div className="knowledge-pillar-graphic">
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{ color: '#3b82f6' }}>
+                <ellipse cx="12" cy="5" rx="9" ry="3" />
+                <path d="M3 5v6c0 1.66 4 3 9 3s9-1.34 9-3V5" />
+                <path d="M3 11v6c0 1.66 4 3 9 3s9-1.34 9-3v-6" />
+              </svg>
             </div>
+            <span className="knowledge-pillar-num">03 / STORAGE</span>
+            <h3 className="knowledge-pillar-title">Relational &amp; NoSQL Databases</h3>
+            <p className="knowledge-pillar-desc">
+              Designing normalized schemas, query indexing, and transactional rollbacks in Postgres, as well as high-performance document modeling in MongoDB and Redis caching.
+            </p>
           </div>
         </div>
       </section>
-
-
     </div>
   );
 }

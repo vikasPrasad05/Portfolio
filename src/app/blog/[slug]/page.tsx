@@ -424,8 +424,33 @@ jobs:
   }
 };
 
+import type { Metadata } from 'next';
+
 interface PageProps {
   params: Promise<{ slug: string }>;
+}
+
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const { slug } = await params;
+  const article = ARTICLES[slug];
+  
+  if (!article) {
+    return {
+      title: 'Post Not Found | Vikas Prasad Blog',
+    };
+  }
+
+  return {
+    title: `${article.title} | Vikas Prasad Blog`,
+    description: article.description,
+    openGraph: {
+      title: `${article.title} | Vikas Prasad Blog`,
+      description: article.description,
+      type: 'article',
+      publishedTime: article.date,
+      authors: ['Vikas Prasad'],
+    },
+  };
 }
 
 export default async function BlogPostDetailPage({ params }: PageProps) {

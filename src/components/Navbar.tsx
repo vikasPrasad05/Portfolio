@@ -1,12 +1,71 @@
 "use client";
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
+  const containerRef = useRef<HTMLDivElement>(null);
+  
+  const [indicatorStyle, setIndicatorStyle] = useState<React.CSSProperties>({
+    left: 0,
+    width: 0,
+    opacity: 0
+  });
+
+  const [hoverStyle, setHoverStyle] = useState<React.CSSProperties>({
+    left: 0,
+    width: 0,
+    opacity: 0
+  });
+
+  // Update indicator position
+  useEffect(() => {
+    const updateIndicator = () => {
+      const container = containerRef.current;
+      if (!container) return;
+      
+      const activeLink = container.querySelector('.nav-link.active') as HTMLElement;
+      if (activeLink) {
+        setIndicatorStyle({
+          left: activeLink.offsetLeft,
+          width: activeLink.clientWidth,
+          opacity: 1
+        });
+      } else {
+        setIndicatorStyle(prev => ({ ...prev, opacity: 0 }));
+      }
+    };
+
+    updateIndicator();
+    
+    window.addEventListener('resize', updateIndicator);
+    const timer = setTimeout(updateIndicator, 50);
+    
+    return () => {
+      window.removeEventListener('resize', updateIndicator);
+      clearTimeout(timer);
+    };
+  }, [pathname]);
+
+  const handleMouseEnter = (e: React.MouseEvent<HTMLElement>) => {
+    const target = e.currentTarget;
+    if (target.classList.contains('active')) {
+      setHoverStyle(prev => ({ ...prev, opacity: 0 }));
+      return;
+    }
+    setHoverStyle({
+      left: target.offsetLeft,
+      width: target.clientWidth,
+      opacity: 1
+    });
+  };
+
+  const handleMouseLeave = () => {
+    setHoverStyle(prev => ({ ...prev, opacity: 0 }));
+  };
 
   // Close menu when pathname changes (navigation occurs)
   useEffect(() => {
@@ -16,12 +75,12 @@ export default function Navbar() {
   // Lock body scroll when mobile menu is open
   useEffect(() => {
     if (isOpen) {
-      document.body.style.overflow = 'hidden';
+      document.body.classList.add('menu-open-lock');
     } else {
-      document.body.style.overflow = '';
+      document.body.classList.remove('menu-open-lock');
     }
     return () => {
-      document.body.style.overflow = '';
+      document.body.classList.remove('menu-open-lock');
     };
   }, [isOpen]);
 
@@ -55,7 +114,43 @@ export default function Navbar() {
         </div>
 
         {/* Desktop Navigation Links */}
-        <div className="nav-links desktop-only">
+        <div className="nav-links desktop-only" ref={containerRef} style={{ position: 'relative' }}>
+          {/* Sliding Hover Pill Background */}
+          <div 
+            className="nav-hover-pill" 
+            style={{
+              position: 'absolute',
+              top: '4px',
+              bottom: '4px',
+              left: 0,
+              transform: `translateX(${hoverStyle.left}px)`,
+              width: `${hoverStyle.width}px`,
+              opacity: hoverStyle.opacity,
+              backgroundColor: 'rgba(0, 0, 0, 0.05)',
+              borderRadius: '8px',
+              transition: 'transform 0.22s cubic-bezier(0.25, 1, 0.5, 1), width 0.22s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.15s ease',
+              pointerEvents: 'none',
+              zIndex: 0
+            }}
+          />
+          {/* Sliding Active Pill Background */}
+          <div 
+            className="nav-active-pill" 
+            style={{
+              position: 'absolute',
+              top: '4px',
+              bottom: '4px',
+              left: 0,
+              transform: `translateX(${indicatorStyle.left}px)`,
+              width: `${indicatorStyle.width}px`,
+              opacity: indicatorStyle.opacity,
+              backgroundColor: 'var(--text-primary)',
+              borderRadius: '8px',
+              transition: 'transform 0.3s cubic-bezier(0.25, 1, 0.5, 1), width 0.3s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.2s ease',
+              pointerEvents: 'none',
+              zIndex: 0
+            }}
+          />
           {links.map((link) => (
             link.isExternal ? (
               <a
@@ -64,6 +159,9 @@ export default function Navbar() {
                 className="nav-link"
                 target="_blank"
                 rel="noopener noreferrer"
+                style={{ position: 'relative', zIndex: 1 }}
+                onMouseEnter={handleMouseEnter}
+                onMouseLeave={handleMouseLeave}
               >
                 {link.label}
               </a>
@@ -72,6 +170,9 @@ export default function Navbar() {
                 key={link.href}
                 href={link.href}
                 className={`nav-link ${isActive(link.href) ? 'active' : ''}`}
+                style={{ position: 'relative', zIndex: 1 }}
+                onMouseEnter={handleMouseEnter}
+                onMouseLeave={handleMouseLeave}
               >
                 {link.label}
               </Link>
