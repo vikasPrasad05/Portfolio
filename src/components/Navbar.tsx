@@ -6,8 +6,21 @@ import { usePathname } from 'next/navigation';
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const [isDark, setIsDark] = useState(false);
   const pathname = usePathname();
   const containerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const root = document.documentElement;
+    setIsDark(root.getAttribute('data-theme') === 'dark');
+  }, []);
+
+  const toggleTheme = () => {
+    const root = document.documentElement;
+    const newTheme = isDark ? 'light' : 'dark';
+    root.setAttribute('data-theme', newTheme);
+    setIsDark(!isDark);
+  };
   
   const [indicatorStyle, setIndicatorStyle] = useState<React.CSSProperties>({
     left: 0,
@@ -15,30 +28,24 @@ export default function Navbar() {
     opacity: 0
   });
 
-  const [hoverStyle, setHoverStyle] = useState<React.CSSProperties>({
-    left: 0,
-    width: 0,
-    opacity: 0
-  });
+  const updateIndicator = React.useCallback(() => {
+    const container = containerRef.current;
+    if (!container) return;
+    
+    const activeLink = container.querySelector('.nav-link.active') as HTMLElement;
+    if (activeLink) {
+      setIndicatorStyle({
+        left: activeLink.offsetLeft,
+        width: activeLink.clientWidth,
+        opacity: 1
+      });
+    } else {
+      setIndicatorStyle(prev => ({ ...prev, opacity: 0 }));
+    }
+  }, []);
 
   // Update indicator position
   useEffect(() => {
-    const updateIndicator = () => {
-      const container = containerRef.current;
-      if (!container) return;
-      
-      const activeLink = container.querySelector('.nav-link.active') as HTMLElement;
-      if (activeLink) {
-        setIndicatorStyle({
-          left: activeLink.offsetLeft,
-          width: activeLink.clientWidth,
-          opacity: 1
-        });
-      } else {
-        setIndicatorStyle(prev => ({ ...prev, opacity: 0 }));
-      }
-    };
-
     updateIndicator();
     
     window.addEventListener('resize', updateIndicator);
@@ -48,15 +55,11 @@ export default function Navbar() {
       window.removeEventListener('resize', updateIndicator);
       clearTimeout(timer);
     };
-  }, [pathname]);
+  }, [pathname, updateIndicator]);
 
   const handleMouseEnter = (e: React.MouseEvent<HTMLElement>) => {
     const target = e.currentTarget;
-    if (target.classList.contains('active')) {
-      setHoverStyle(prev => ({ ...prev, opacity: 0 }));
-      return;
-    }
-    setHoverStyle({
+    setIndicatorStyle({
       left: target.offsetLeft,
       width: target.clientWidth,
       opacity: 1
@@ -64,7 +67,7 @@ export default function Navbar() {
   };
 
   const handleMouseLeave = () => {
-    setHoverStyle(prev => ({ ...prev, opacity: 0 }));
+    updateIndicator();
   };
 
   // Close menu when pathname changes (navigation occurs)
@@ -114,26 +117,13 @@ export default function Navbar() {
         </div>
 
         {/* Desktop Navigation Links */}
-        <div className="nav-links desktop-only" ref={containerRef} style={{ position: 'relative' }}>
-          {/* Sliding Hover Pill Background */}
-          <div 
-            className="nav-hover-pill" 
-            style={{
-              position: 'absolute',
-              top: '4px',
-              bottom: '4px',
-              left: 0,
-              transform: `translateX(${hoverStyle.left}px)`,
-              width: `${hoverStyle.width}px`,
-              opacity: hoverStyle.opacity,
-              backgroundColor: 'rgba(0, 0, 0, 0.05)',
-              borderRadius: '8px',
-              transition: 'transform 0.22s cubic-bezier(0.25, 1, 0.5, 1), width 0.22s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.15s ease',
-              pointerEvents: 'none',
-              zIndex: 0
-            }}
-          />
-          {/* Sliding Active Pill Background */}
+        <div 
+          className="nav-links desktop-only" 
+          ref={containerRef} 
+          style={{ position: 'relative' }}
+          onMouseLeave={handleMouseLeave}
+        >
+          {/* Sliding Pill Background */}
           <div 
             className="nav-active-pill" 
             style={{
@@ -161,7 +151,6 @@ export default function Navbar() {
                 rel="noopener noreferrer"
                 style={{ position: 'relative', zIndex: 1 }}
                 onMouseEnter={handleMouseEnter}
-                onMouseLeave={handleMouseLeave}
               >
                 {link.label}
               </a>
@@ -172,7 +161,6 @@ export default function Navbar() {
                 className={`nav-link ${isActive(link.href) ? 'active' : ''}`}
                 style={{ position: 'relative', zIndex: 1 }}
                 onMouseEnter={handleMouseEnter}
-                onMouseLeave={handleMouseLeave}
               >
                 {link.label}
               </Link>
@@ -180,17 +168,44 @@ export default function Navbar() {
           ))}
         </div>
 
-        {/* Desktop Socials */}
-        <div className="nav-socials desktop-only">
-          <a href="https://twitter.com" aria-label="Twitter" target="_blank" rel="noopener noreferrer">
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"></path></svg>
-          </a>
-          <a href="https://linkedin.com" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
-          </a>
-          <a href="https://github.com/vikasPrasad05" aria-label="GitHub" target="_blank" rel="noopener noreferrer">
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
-          </a>
+        {/* Desktop Right Side */}
+        <div className="nav-right desktop-only" style={{ display: 'flex', alignItems: 'center', gap: '0.8rem' }}>
+          <button 
+            className="theme-toggle-btn"
+            onClick={toggleTheme}
+            aria-label="Toggle Theme"
+          >
+            <div className="theme-icon-wrapper">
+              {/* Sun Icon */}
+              <svg className="theme-icon sun-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <circle cx="12" cy="12" r="5"></circle>
+                <line x1="12" y1="1" x2="12" y2="3"></line>
+                <line x1="12" y1="21" x2="12" y2="23"></line>
+                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                <line x1="1" y1="12" x2="3" y2="12"></line>
+                <line x1="21" y1="12" x2="23" y2="12"></line>
+                <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+              </svg>
+              {/* Moon Icon */}
+              <svg className="theme-icon moon-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+              </svg>
+            </div>
+          </button>
+
+          <div className="nav-socials">
+            <a href="https://twitter.com" aria-label="Twitter" target="_blank" rel="noopener noreferrer">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"></path></svg>
+            </a>
+            <a href="https://linkedin.com" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+            </a>
+            <a href="https://github.com/vikasPrasad05" aria-label="GitHub" target="_blank" rel="noopener noreferrer">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+            </a>
+          </div>
         </div>
 
         {/* Mobile Hamburger Button */}

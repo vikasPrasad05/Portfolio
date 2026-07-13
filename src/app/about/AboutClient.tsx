@@ -15,8 +15,8 @@ interface Sticker {
 export default function AboutPage() {
   const timelineRef = useRef<HTMLDivElement>(null);
   const targetProgress = useRef(0);
-
-  const [scrollProgress, setScrollProgress] = useState(0);
+  const avatarTrackerRef = useRef<HTMLDivElement>(null);
+  const fillLineRef = useRef<HTMLDivElement>(null);
 
   // Sticker positions state for the Scrapbook drag-and-drop feature
   const [stickers, setStickers] = useState<Sticker[]>([
@@ -69,12 +69,16 @@ export default function AboutPage() {
     const animate = () => {
       const diff = targetProgress.current - currentVal;
       if (Math.abs(diff) > 0.0001) {
-        currentVal += diff * 0.03;
-        setScrollProgress(currentVal);
+        currentVal += diff * 0.08;
       } else {
         currentVal = targetProgress.current;
-        setScrollProgress(currentVal);
       }
+      
+      if (avatarTrackerRef.current && fillLineRef.current) {
+        avatarTrackerRef.current.style.top = `${currentVal * 97}%`;
+        fillLineRef.current.style.height = `${currentVal * 100}%`;
+      }
+      
       rafId = requestAnimationFrame(animate);
     };
 
@@ -133,7 +137,7 @@ export default function AboutPage() {
             <span className="about-pretitle">About</span>
             <h1 className="about-title">I&apos;m Vikas Prasad, a developer.</h1>
             <p className="about-description">
-              I&apos;m Vikas, a frontend developer, blogger and tech tinkerer. Welcome to my corner of the internet!
+              I&apos;m Vikas, a frontend developer, blogger and tech tinkerer.
             </p>
           </div>
 
@@ -162,9 +166,11 @@ export default function AboutPage() {
             <div className="timeline-progress-bar-inner">
               <div
                 className="timeline-avatar-tracker"
+                ref={avatarTrackerRef}
                 style={{
-                  top: `${scrollProgress * 97}%`,
-                  transform: 'translateY(-50%)'
+                  top: '0%',
+                  transform: 'translate(-50%, -50%)',
+                  zIndex: 20
                 }}
               >
                 <img src="/images/vikas_1.jpg" alt="Vikas Prasad" />
@@ -172,7 +178,8 @@ export default function AboutPage() {
               <div className="timeline-rail-line">
                 <div
                   className="timeline-fill-line"
-                  style={{ height: `${scrollProgress * 100}%` }}
+                  ref={fillLineRef}
+                  style={{ height: '0%' }}
                 />
               </div>
             </div>

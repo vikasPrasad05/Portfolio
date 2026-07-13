@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Image from 'next/image';
 import CallCalendar from '../components/CallCalendar';
 
 export const metadata: Metadata = {
@@ -18,9 +19,13 @@ export default function Home() {
       <section className="hero-section">
         <div className="hero-profile-bg-wrapper">
           <div className="hero-profile-image">
-            <img 
+            <Image 
               src="/images/vikas_1.jpg" 
               alt="Profile" 
+              width={110}
+              height={110}
+              priority
+              style={{ objectFit: 'cover', width: '100%', height: '100%' }}
             />
           </div>
         </div>
@@ -54,7 +59,7 @@ export default function Home() {
         <div className="section-divider"></div>
         <div className="section-header-centered">
           <span className="section-label">Projects</span>
-          <h2 className="section-title-centered desktop-only-text">My site is a playful sandbox.<br/>Explore, experiment, &amp;&amp; say hello</h2>
+          <h2 className="section-title-centered desktop-only-text">My Experiment</h2>
           <h2 className="section-title-centered mobile-only-text">My Projects</h2>
         </div>
 
@@ -62,7 +67,14 @@ export default function Home() {
           {/* Card 1: Samarthwave Hospitality Project */}
           <div className="sandbox-card project-card">
             <div className="project-graphic">
-              <img src="/images/samarthwave.png" alt="Samarthwave Hospitality" className="project-screenshot" />
+              <Image 
+                src="/images/samarthwave.png" 
+                alt="Samarthwave Hospitality" 
+                className="project-screenshot" 
+                width={600}
+                height={400}
+                style={{ objectFit: 'cover', width: '100%', height: '100%' }}
+              />
             </div>
             <div className="project-card-body">
               <h3>Samarthwave Hospitality</h3>
@@ -118,7 +130,7 @@ export default function Home() {
         <div className="section-divider"></div>
         <div className="section-header-centered">
           <span className="section-label">About</span>
-          <h2 className="section-title-centered">Here&apos;s what sets me apart<span className="desktop-only-inline"><br/>and makes me unique</span></h2>
+          <h2 className="section-title-centered">Makes me unique</h2>
         </div>
 
         <div className="about-grid">
@@ -148,7 +160,7 @@ export default function Home() {
                     </div>
                   </div>
                   {/* Next.js */}
-                  <div className="tool-item large" style={{ color: '#000000' }}>
+                  <div className="tool-item large" style={{ color: 'var(--text-primary)' }}>
                     <div className="tool-item-inner">
                       <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
                         <path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm1 14.5l-3.5-5.5v5.5H9V8h1.5l3.5 5.5V8h1.5v8.5H13z" fill="currentColor"/>
@@ -193,7 +205,13 @@ export default function Home() {
                 <div className="blur-ring ring-4"></div>
                 <div className="blur-ring ring-5"></div>
                 <div style={{ position: 'absolute', width: '100px', height: '100px', borderRadius: '50%', overflow: 'hidden', border: '5px solid #fff', boxShadow: '0 4px 12px rgba(0,0,0,0.08)', zIndex: 10, left: '50%', transform: 'translateX(-50%)' }}>
-                  <img src="/images/vikas_1.jpg" alt="Connections Profile" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                  <Image 
+                    src="/images/vikas_1.jpg" 
+                    alt="Connections Profile" 
+                    width={100}
+                    height={100}
+                    style={{ width: '100%', height: '100%', objectFit: 'cover' }} 
+                  />
                 </div>
               </div>
               <h3>Connections</h3>
@@ -238,7 +256,7 @@ export default function Home() {
                 <line x1="17.5" y1="17.5" x2="14.5" y2="14.5" />
               </svg>
             </div>
-            <span className="knowledge-pillar-num">01 / ARCHITECTURE</span>
+
             <h3 className="knowledge-pillar-title">Robust API Engineering</h3>
             <p className="knowledge-pillar-desc">
               Designing modular, rate-limited RESTful and GraphQL APIs with strict schema validation, security policies, and webhook callback settlement managers.
@@ -254,7 +272,7 @@ export default function Home() {
                 <circle cx="16" cy="14" r="1.5" />
               </svg>
             </div>
-            <span className="knowledge-pillar-num">02 / INTEGRATIONS</span>
+
             <h3 className="knowledge-pillar-title">Payment Gateways</h3>
             <p className="knowledge-pillar-desc">
               Seamlessly integrating payment providers like Razorpay and Stripe. Experienced in signature validation, payout settlements, ledger accounting, and error handling.
@@ -269,7 +287,7 @@ export default function Home() {
                 <path d="M3 11v6c0 1.66 4 3 9 3s9-1.34 9-3v-6" />
               </svg>
             </div>
-            <span className="knowledge-pillar-num">03 / STORAGE</span>
+
             <h3 className="knowledge-pillar-title">Relational &amp; NoSQL Databases</h3>
             <p className="knowledge-pillar-desc">
               Designing normalized schemas, query indexing, and transactional rollbacks in Postgres, as well as high-performance document modeling in MongoDB and Redis caching.

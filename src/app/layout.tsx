@@ -1,12 +1,13 @@
 import type { Metadata } from 'next';
-import { Inter, Plus_Jakarta_Sans, JetBrains_Mono } from 'next/font/google';
+import { DM_Sans, Lora, JetBrains_Mono } from 'next/font/google';
 import Link from 'next/link';
 import NewsletterSection from '../components/NewsletterSection';
 import Navbar from '../components/Navbar';
+import ScrollToTop from '../components/ScrollToTop';
 import './globals.css';
 
-const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
-const plusJakarta = Plus_Jakarta_Sans({ subsets: ['latin'], variable: '--font-plus-jakarta' });
+const dmSans = DM_Sans({ subsets: ['latin'], variable: '--font-dm-sans' });
+const lora = Lora({ subsets: ['latin'], variable: '--font-lora' });
 const jetBrainsMono = JetBrains_Mono({ subsets: ['latin'], variable: '--font-jetbrains-mono' });
 
 export const metadata: Metadata = {
@@ -20,8 +21,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body className={`${inter.variable} ${plusJakarta.variable} ${jetBrainsMono.variable}`}>
+    <html lang="en" className={`${dmSans.variable} ${lora.variable} ${jetBrainsMono.variable}`}>
+      <body>
         <div className="layout-wrapper">
           <div className="layout-container">
             <Navbar />
@@ -75,6 +76,7 @@ export default function RootLayout({
                 </div>
               </div>
             </footer>
+            <ScrollToTop />
           </div>
         </div>
       </body>
