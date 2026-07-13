@@ -1,15 +1,12 @@
 import type { Metadata } from 'next';
 import Image from 'next/image';
 import CallCalendar from '../components/CallCalendar';
+import ContactButton from '../components/ContactButton';
+import BookCallCard from '../components/BookCallCard';
 
 export const metadata: Metadata = {
-  title: 'Vikas Prasad | Portfolio - Full Stack Software Developer',
+  title: 'Home',
   description: 'Explore the personal portfolio of Vikas Prasad, a Full Stack Developer specializing in Next.js, React, Node.js, Express, MongoDB, and AWS cloud solutions.',
-  openGraph: {
-    title: 'Vikas Prasad | Portfolio - Full Stack Software Developer',
-    description: 'Explore the personal portfolio of Vikas Prasad, a Full Stack Developer specializing in Next.js, React, Node.js, Express, MongoDB, and AWS cloud solutions.',
-    type: 'website',
-  }
 };
 
 export default function Home() {
@@ -48,9 +45,7 @@ export default function Home() {
           <a href="/projects" className="hero-cta-primary">
             Explore Projects
           </a>
-          <a href="#call-calendar" className="hero-cta-secondary">
-            Get in touch
-          </a>
+          <ContactButton />
         </div>
       </section>
 
@@ -106,7 +101,6 @@ export default function Home() {
                </svg>
             </div>
             <div className="card-text">
-              <h3>Speaking</h3>
               <p className="coming-soon-label">Coming Soon</p>
             </div>
           </div>
@@ -118,7 +112,6 @@ export default function Home() {
                <div className="mock-card mock-card-2" style={{ opacity: 0.3 }}></div>
              </div>
             <div className="card-text">
-              <h3>Community Wall</h3>
               <p className="coming-soon-label">Coming Soon</p>
             </div>
           </div>
@@ -219,13 +212,7 @@ export default function Home() {
             </a>
 
             {/* Book a call */}
-            <div id="call-calendar" className="about-card call-card">
-              <div className="call-content">
-                <h3>Book a call with me</h3>
-                <p>I&apos;d love to chat even if there&apos;s no agenda!</p>
-              </div>
-              <CallCalendar />
-            </div>
+            <BookCallCard />
           </div>
         </div>
       </section>

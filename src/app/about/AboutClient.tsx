@@ -282,8 +282,7 @@ export default function AboutPage() {
           <div className="bento-card music-card-container">
             <div className="music-card-inner">
               <div className="music-glow"></div>
-              <div className="music-album-art">
-                <img src="/images/vikas_2.png" alt="Album art" />
+              <div className="music-album-art" style={{ background: 'linear-gradient(135deg, #1e1e2f, #111111)' }}>
                 <div className="music-active-indicator">
                   <span></span>
                   <span></span>
