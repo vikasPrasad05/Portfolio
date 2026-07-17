@@ -4235,3 +4235,28 @@ a { color: inherit; text-decoration: none; transition: all 0.2s ease; }
 }
 
 
+/* Print specific styles to hide global elements when printing */
+@media print {
+  .navbar, 
+  .footer, 
+  .newsletter-section, 
+  .scroll-to-top {
+    display: none !important;
+  }
+
+  .layout-container {
+    border: none !important;
+    background: none !important;
+    box-shadow: none !important;
+  }
+  
+  .layout-container::before, 
+  .layout-container::after {
+    display: none !important;
+  }
+
+  body {
+    background-color: white !important;
+    color: black !important;
+  }
+}

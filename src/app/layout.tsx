@@ -113,7 +113,7 @@ export default function RootLayout({
                     <div className="footer-col">
                       <h4>Specifics</h4>
                       <Link href="/techstack">Tech Stack</Link>
-                      <a href="/resume.pdf" target="_blank" rel="noopener noreferrer">Resume</a>
+                      <Link href="/resume">Resume</Link>
                       <Link href="/products">Products</Link>
                       <Link href="/connections">Connections</Link>
                     </div>

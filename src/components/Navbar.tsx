@@ -87,12 +87,12 @@ export default function Navbar() {
     };
   }, [isOpen]);
 
-  const links = [
+  const links: { href: string; label: string; isExternal?: boolean }[] = [
     { href: '/', label: 'Home' },
     { href: '/about', label: 'About' },
     { href: '/blog', label: 'Blog' },
     { href: '/projects', label: 'Projects' },
-    { href: '/resume.pdf', label: 'Resume', isExternal: true },
+    { href: '/resume', label: 'Resume' },
     { href: '/techstack', label: 'Tech Stack' },
   ];
 

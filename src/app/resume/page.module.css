@@ -1,0 +1,196 @@
+.resumeContainer {
+  display: flex;
+  justify-content: center;
+  padding: 6rem 2rem 4rem;
+  background-color: var(--bg-color);
+  min-height: 100vh;
+}
+
+.resumePaper {
+  width: 100%;
+  max-width: 850px;
+  background-color: var(--card-bg);
+  color: var(--text-primary);
+  padding: 5rem 5rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  font-family: 'Times New Roman', Times, serif;
+  line-height: 1.5;
+}
+
+.resumePaper a {
+  color: var(--accent-color);
+  text-decoration: none;
+}
+
+.resumePaper a:hover {
+  text-decoration: underline;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+.name {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  letter-spacing: 0.02em;
+}
+
+.contactInfo {
+  font-size: 0.95rem;
+  line-height: 1.4;
+  color: var(--text-secondary);
+}
+
+.contactInfo span {
+  margin: 0 0.3rem;
+  color: var(--text-muted);
+}
+
+.section {
+  margin-bottom: 1.5rem;
+}
+
+.sectionTitle {
+  font-size: 0.95rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  margin-bottom: 0.25rem;
+  letter-spacing: 0.02em;
+}
+
+.sectionDivider {
+  border: none;
+  border-top: 1px solid var(--border-color);
+  margin-bottom: 0.8rem;
+}
+
+.skillsContent {
+  font-size: 0.95rem;
+  line-height: 1.4;
+}
+
+.skillsContent p {
+  margin-bottom: 0.2rem;
+}
+
+.projectBlock, .jobBlock, .educationBlock {
+  margin-bottom: 1.5rem;
+}
+
+.projectHeader, .jobHeader, .eduHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  font-size: 1rem;
+  margin-bottom: 0.2rem;
+}
+
+.projectHeader strong, .jobHeader strong, .eduHeader strong {
+  font-weight: 700;
+}
+
+.projectTech {
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+}
+
+.linkText {
+  font-weight: bold;
+  color: var(--accent-color);
+}
+
+.jobDate {
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.jobTitleRow, .eduDegreeRow {
+  font-size: 0.95rem;
+  margin-bottom: 0.5rem;
+}
+
+.jobTitle {
+  font-style: normal;
+}
+
+.eduDegree {
+  font-style: normal;
+}
+
+.jobDetails, .projectDetails {
+  list-style-type: disc;
+  padding-left: 2.5rem;
+  font-size: 0.95rem;
+  margin-top: 0.4rem;
+}
+
+.jobDetails li, .projectDetails li {
+  margin-bottom: 0.2rem;
+  padding-left: 0.2rem;
+}
+
+@media (max-width: 768px) {
+  .resumeContainer {
+    padding: 5rem 1rem 2rem;
+  }
+  
+  .resumePaper {
+    padding: 3rem 2rem;
+  }
+  
+  .name {
+    font-size: 2rem;
+  }
+}
+
+.resumeWrapper {
+  width: 100%;
+  max-width: 850px;
+  display: flex;
+  flex-direction: column;
+}
+
+.downloadButtonContainer {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 1rem;
+}
+
+.downloadButton {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  background-color: var(--btn-primary-bg);
+  color: var(--btn-primary-text);
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.downloadButton:hover {
+  background-color: var(--btn-primary-hover);
+  transform: translateY(-1px);
+}
+
+@media print {
+  .downloadButtonContainer {
+    display: none !important;
+  }
+  .resumeContainer {
+    padding: 0 !important;
+    background-color: white !important;
+  }
+  .resumePaper {
+    box-shadow: none !important;
+    padding: 0 !important;
+    max-width: 100% !important;
+  }
+}
